@@ -1,18 +1,23 @@
 package com.tecnodix.festalandix
 
-import org.springframework.ui.Model
-import org.springframework.ui.set
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.servlet.ModelAndView
+import java.util.*
+import kotlin.collections.List
+import kotlin.collections.MutableIterable
+import kotlin.collections.MutableMap
+import kotlin.collections.set
 
 
 @RestController
 class ColaboradorControler(private val colaboradorRepository: ColaboradorRepository) {
 
-    @GetMapping(value = ["/", "/index.html"])
-    fun festalandix(model: Model): String? {
-        return "festalandix"
+    @GetMapping("/")
+    fun index(): ModelAndView? {
+        val model: MutableMap<String, String?> = HashMap()
+        model["title"] = "Festa Landix 2021"
+        return ModelAndView("index", model)
     }
-
     @GetMapping("/todos")
     fun todos(): MutableIterable<Colaborador> = this.colaboradorRepository.findAll()
 
