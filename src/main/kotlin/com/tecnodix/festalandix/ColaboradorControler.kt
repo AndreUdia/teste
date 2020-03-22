@@ -4,12 +4,12 @@ import org.springframework.ui.Model
 import org.springframework.ui.set
 import org.springframework.web.bind.annotation.*
 
+
 @RestController
 class ColaboradorControler(private val colaboradorRepository: ColaboradorRepository) {
 
-    @GetMapping("/")
-    fun pagina(model: Model): String {
-        model["titulo"] = "Festa Landix 2021"
+    @GetMapping(value = ["/", "/index.html"])
+    fun festalandix(model: Model): String? {
         return "festalandix"
     }
 
@@ -24,7 +24,7 @@ class ColaboradorControler(private val colaboradorRepository: ColaboradorReposit
 
     @PostMapping("/cadastrar")
     fun cadastrar(@RequestBody novoCadastro: Colaborador) {
-        val colaborador = Colaborador(novoCadastro._nome, novoCadastro._email, novoCadastro._senha)
+        val colaborador = Colaborador(novoCadastro.nome, novoCadastro.email, novoCadastro.senha)
         this.colaboradorRepository.save(colaborador)
         println("Log ColaboradorControler linha 22: Cadastro de novo colaborador efetuado")
     }

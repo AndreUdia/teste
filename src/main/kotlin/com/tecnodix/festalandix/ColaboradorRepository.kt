@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ColaboradorRepository : CrudRepository<Colaborador, Long> {
-    fun findByNome(_nome: String): List<Colaborador>
+    fun findByNome(nome: String): List<Colaborador>
 }
